@@ -3,11 +3,11 @@
 A select collection of the work I did in my my undergraduate at the University of Illinois, resulting in [this paper](https://arxiv.org/abs/2012.06552) which would go on to be published in [*Monthly Notices of the Royal Astronomical Society*](https://academic.oup.com/mnras/article-abstract/507/1/927/6330468?redirectedFrom=fulltext). The work centered around modeling both what fraction of supernovae (SNe) in the Milky Way we are likely to see and where to see it, building off of the models in [Adams, et. al., (2013)](https://arxiv.org/pdf/1306.0559.pdf).
 
 ## Setup
-We start with the double exponential distribution given in the Adams paper, modelling both core-collapse supernove (CCSNe) and Type-Ia supernovae(IaSNe) individually, as well as dust. We use 3D density distributions following the equation $$\rho_j(R, z) = \frac{\exp(-R/R_j)\exp(-|z|/z_j)}{4\pi R_j^2h_j}$$ where $(R_j, h_j)$ are the corresponding scale radii and heights for the 3 different distributions. These are then converted into Galactic coordinates and their relative distance from the Solar System $(r, \ell, b)$ via the following equations:
-$$
+We start with the double exponential distribution given in the Adams paper, modelling both core-collapse supernove (CCSNe) and Type-Ia supernovae(IaSNe) individually, as well as dust. We use 3D density distributions following the equation $\\\rho_j(R, z) = \frac{\exp(-R/R_j)\exp(-|z|/z_j)}{4\pi R_j^2h_j}\\$ where $(R_j, h_j)$ are the corresponding scale radii and heights for the 3 different distributions. These are then converted into Galactic coordinates and their relative distance from the Solar System $(r, \ell, b)$ via the following equations:
+$\\
 R(r, \ell, b) = \sqrt{R_\odot^2 + r^2\cos^2b - 2R_\odot r\cos\ell\cos b}\\
 z(r, \ell, b) = r\sin b + z_\odot
-$$
+\\$
 With the Sun having $(R_\odot, z_\odot) = (8.5~\mathrm{kpc}, 0.020~\mathrm{kpc})$. We then use two different algorithms we developed to then calculate the probability of seeing any given supernovae and where on the sky in their own way.
 ## Integration
 The integration method we use takes an array of signlines across the whole sky and calculates the distance from Earth along each sightline in which the given type of supernova is still visible. It does this by taking 10 parsec steps along the sightlines until the amount of light extinction is greater than the difference between the SN's absolute magnitude and the dimmest visible magnitude of the human eye. The collection of coordinates and points then become a surface on which to integrate in 3 dimensions on along. By integrating outward along the signlines first, we get $\frac{dP}{d\Omega}$, the probability density map that shows where in the sky we are most likely to see supernovae. Integrating across this map then gives us the total probability of seeing any type of supernova when such type occurs.
