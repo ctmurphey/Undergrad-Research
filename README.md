@@ -17,5 +17,4 @@ Each Monte Carlo Simulation works as follows: First, a set on $3n$ random values
 
 ### mc_sn.py
 This program makes four subplots from a collection of $10^5$ simulated SN points. The first is an rotatable 3D visualization of all of the supernovae. The visible ones are colored blue and Sun is added in as a reference point. The second is a 2-D plot of their view from Earth in Galactic coordinates. The third and fourth are latitude and longitude histograms of all of the points.
-**Insert mc_sn output image here**
-![Alt text](/home/tanner/Undergrad-Research/Research_Su19/montecarlo_subplots.png "mc_sn.png")
+![Alt text](./Images/montecarlo_subplots.png "mc_sn.png")
