@@ -5,7 +5,7 @@ A select collection of the work I did in my my undergraduate at the University o
 ## Setup
 We start with the double exponential distribution given in the Adams paper, modelling both core-collapse supernove (CCSNe) and Type-Ia supernovae(IaSNe) individually, as well as dust. We use 3D density distributions following the equation $\\\rho_j(R, z) = \frac{\exp(-R/R_j)\exp(-|z|/z_j)}{4\pi R_j^2h_j}\\$ where $(R_j, h_j)$ are the corresponding scale radii and heights for the 3 different distributions. These are then converted into Galactic coordinates and their relative distance from the Solar System $(r, \ell, b)$ via the following equations:
 $\\
-R(r, \ell, b) = \sqrt{R_\odot^2 + r^2\cos^2b - 2R_\odot r\cos\ell\cos b}\\
+<img src="https://bit.ly/3rcQUUJ" align="center" border="0" alt="R(r, \ell, b) = \sqrt{R_\odot^2 + r^2\cos^2b - 2R_\odot r\cos\ell\cos b}" width="372" height="35" />\\
 z(r, \ell, b) = r\sin b + z_\odot
 \\$
 With the Sun having $(R_\odot, z_\odot) = (8.5~\mathrm{kpc}, 0.020~\mathrm{kpc})$. We then use two different algorithms we developed to then calculate the probability of seeing any given supernovae and where on the sky in their own way.
