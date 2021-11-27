@@ -1,6 +1,6 @@
 # Undergrad-Research
 
-A select collection of the work I did in my my undergraduate at the University of Illinois, resulting in the research paper [Murphey, et. al., (2020)](https://arxiv.org/abs/2012.06552) which would go on to be published in [*Monthly Notices of the Royal Astronomical Society*](https://academic.oup.com/mnras/article-abstract/507/1/927/6330468?redirectedFrom=fulltext). The work centered around modeling both what fraction of supernovae (SNe) in the Milky Way we are likely to see and where to see it, building off of the models in [Adams, et. al., (2013)](https://arxiv.org/pdf/1306.0559.pdf).
+A select collection of the work I did in my undergraduate at the University of Illinois, resulting in the research paper [Murphey, et. al., (2020)](https://arxiv.org/abs/2012.06552) which would go on to be published in [*Monthly Notices of the Royal Astronomical Society*](https://academic.oup.com/mnras/article-abstract/507/1/927/6330468?redirectedFrom=fulltext). The work centered around modeling both what fraction of supernovae (SNe) in the Milky Way we are likely to see and where to see it, building off of the models in [Adams, et. al., (2013)](https://arxiv.org/pdf/1306.0559.pdf).
 
 ## Setup
 We start with the double exponential distribution given in the Adams paper, modelling both core-collapse supernove (CCSNe) and Type-Ia supernovae(IaSNe) individually, as well as dust. We use 3D density distributions following these double exponential models (see Murphey, et. al. for equations as GitHub doesn't support them). We then use two different algorithms we developed to then calculate the probability of seeing any given supernovae and where on the sky in their own way.
@@ -17,3 +17,11 @@ Each Monte Carlo Simulation works as follows: First, a set on 3*n* random values
 ### mc_sn.py
 This program makes four subplots from a collection of 100,000 simulated SN points. The first is an rotatable 3D visualization of all of the supernovae. The visible ones are colored blue and Sun is added in as a reference point. The second is a 2-D plot of their view from Earth in Galactic coordinates. The third and fourth are latitude and longitude histograms of all of the points.
 ![Alt text](./Images/montecarlo_subplots.png "mc_sn.png")
+
+### mc_map.py
+This code simulates 20,000 Sne and follows the Monte Carlo algorithm to generate a 2D PDF map. The galactic coordinates of the visible SNe are then converted into their Galactic coordinates and made into a PDF using the Gaussian KDE in scipy.stats. The 2D maps in Murphey, et. al. are almost all generated via this program.
+![Alt text](./Images/50K_CC_K_map_smooth.png)
+
+### V_Fraction_both_types.py
+This code models how the probability of seeing a supernova of either type changes as the visibility thresholds change. The maps were made using the maximum absolute magnitude, but the event is only that bright instantaneously. In order to actually be seen, though, it needs to be visible for weeks or even months. In our paper we introduced the idea of "sustained luminosity", the dimmest magnitude of the event over a period of time to account for that. The plot this code generates shows not only how the probability changes as visibility changes, but also how this sustained luminosity changes. It does this by running the agorithm across a range of both limiting apparent magnitudes and absolute magnitudes corresponding to the sustained luminosities and counting the fraction that remain visible in each of these combinations.
+![Alt text](./Images/vis_vs_mag_both.png)
